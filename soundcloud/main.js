@@ -1,3 +1,6 @@
+console.log("Howdy!");
+
+
 /*
   Here is a guide for the steps you could take:
 */
