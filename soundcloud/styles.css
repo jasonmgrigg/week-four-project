@@ -21,6 +21,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 body {
@@ -38,3 +39,34 @@ header, h1 {
 .music-player {
   width: 60vw;
 }
+
+.results {
+  margin-top: 5vw;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto;
+  text-align: center;
+}
+
+.results ul {
+  list-style-type: none;
+}
+
+input[type=submit] {
+    background-color: #60d9f1;
+    color: white;
+    font-size: 15px;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type=text] {
+    width: 90%;
+    border-style: solid;
+    border-color: black;
+    border-bottom-width: thin;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    background-color: white;
+  }
