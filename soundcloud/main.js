@@ -1,14 +1,10 @@
 console.log("Howdy!");
 
-let userSearchBar = document.getElementById('bandInput');
 let submitButton = document.getElementById('submitButton');
 submitButton.addEventListener('click', function(e) {
 var searchInput = document.getElementById('bandInput').value
-
-  console.log(searchInput)
-
+console.log(searchInput)
 let fetchAddress = "https://api.soundcloud.com/tracks/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94&q=" + (searchInput);
-
 
 fetch(fetchAddress)
 .then(
@@ -51,8 +47,6 @@ fetch(fetchAddress)
          return document.getElementById('audioWrap').innerHTML = playTrack
 
       });
-
-
   });
 })
 });
