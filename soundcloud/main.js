@@ -43,7 +43,7 @@ fetch(fetchAddress)
       var parent = document.getElementById('results').addEventListener('click', function (event) {
           var triggers = document.getElementsByClassName('audioTrigger');
           event.target = triggers;
-          let playTrack = `<audio src="${event.target.id}" id="audio" controls="controls"></audio>`
+          let playTrack = `<audio src="${event.target.id}" id="audio" controls="controls" autoplay></audio>`
          return document.getElementById('audioWrap').innerHTML = playTrack
 
       });
