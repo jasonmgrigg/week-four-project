@@ -1,16 +1,14 @@
 console.log("Howdy!");
 
-
-var bandInput = document.getElementById('bandInput');
-var userSearchBar = document.getElementById('bandInput');
-var submitButton = document.getElementById('submitButton');
-var nameInput = "";
-let searchInput = "";
+let userSearchBar = document.getElementById('bandInput');
+let submitButton = document.getElementById('submitButton');
 submitButton.addEventListener('click', function(e) {
 var searchInput = document.getElementById('bandInput').value
+
   console.log(searchInput)
 
 let fetchAddress = "https://api.soundcloud.com/tracks/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94&q=" + (searchInput);
+
 
 fetch(fetchAddress)
 .then(
@@ -20,31 +18,23 @@ fetch(fetchAddress)
       return
     }
 
-    console.log(fetchAddress);
-
-
-
-
-
   response.json().then(function(data){
-
-
-
-
     function renderData(){
+      let clientId = "/?client_id=86b6a66bb2d863f5d64dd8a91cd8de94"
       return `
           ${data.map(data => `
-            <ul>
-            <img src="${data.artwork_url}"</img>
-            <li class="kind">${data.title}</li>
-            <li><a href="#" data-value="${data.stream_url}">sound_90.mp3</a></li>
-            </ul>
-            `).join('')}
-
-              `;
-
-      }
-
+            <ul class="track">
+             <li>
+               <button class="audioTrigger" type="button">
+                  <img src="${data.artwork_url}" alt="No-Image-Available" id="${data.stream_url}${clientId}">
+               </button>
+             </li>
+             <li>${data.title}</li>
+             <li>${data.user.username}</li>
+             </ul>
+             `).join('')}
+            `;
+            }
 
         let markup = `
           <div class="results">
@@ -52,44 +42,17 @@ fetch(fetchAddress)
           </div>
             `
 
-      document.getElementById("results").innerHTML += markup;
+      document.getElementById("results").innerHTML = markup;
+
+      var parent = document.getElementById('results').addEventListener('click', function (event) {
+          var triggers = document.getElementsByClassName('audioTrigger');
+          event.target = triggers;
+          let playTrack = `<audio src="${event.target.id}" id="audio" controls="controls"></audio>`
+         return document.getElementById('audioWrap').innerHTML = playTrack
+
+      });
 
 
-      list.onclick = function(e) {
-        e.preventDefault();
-
-        var elm = e.target;
-        var audio = document.getElementById('audio');
-
-        var source = document.getElementById('audioSource');
-        source.src = elm.getAttribute('data-value');
-
-        audio.load(); //call this to just preload the audio without playing
-      };
-
-});
+  });
 })
 });
-
-
-
-/*
-  Here is a guide for the steps you could take:
-*/
-
-// 1. First select and store the elements you'll be working with
-
-
-// 2. Create your `onSubmit` event for getting the user's search term
-
-
-// 3. Create your `fetch` request that is called after a submission
-
-
-// 4. Create a way to append the fetch results to your page
-
-
-// 5. Create a way to listen for a click that will play the song in the audio play
-
-
-// Sound cloud ID: boatdreamin@gmail.com, pw: test12
